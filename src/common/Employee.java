@@ -1,5 +1,7 @@
 package common;
 
+import java.util.Objects;
+
 public class Employee {
     private String lastName;
     private String firstName;
@@ -45,6 +47,44 @@ public class Employee {
         this.address = address;
     }
 
+    @Override
+    public String toString() {
+        return "Employee{" + "lastName=" + lastName + ", firstName=" + firstName + '}';
+    }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.lastName);
+        hash = 97 * hash + Objects.hashCode(this.firstName);
+        hash = 97 * hash + Objects.hashCode(this.ssn);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Employee other = (Employee) obj;
+        if (!Objects.equals(this.lastName, other.lastName)) {
+            return false;
+        }
+        if (!Objects.equals(this.firstName, other.firstName)) {
+            return false;
+        }
+        if (!Objects.equals(this.ssn, other.ssn)) {
+            return false;
+        }
+        return true;
+    }
+
+    
     
 }
